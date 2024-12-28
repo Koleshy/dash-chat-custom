@@ -1,8 +1,10 @@
-part of '../../../dash_chat_2.dart';
+part of '../../../dash_chat_custom.dart';
 
 /// @nodoc
 class TextContainer extends StatelessWidget {
   const TextContainer({
+    required this.maxWidth,
+    required this.maxHeight,
     required this.message,
     this.messageOptions = const MessageOptions(),
     this.previousMessage,
@@ -15,6 +17,12 @@ class TextContainer extends StatelessWidget {
     this.messageTextBuilder,
     Key? key,
   }) : super(key: key);
+
+  /// The Chat media max width (default is full width)
+  final double maxWidth;
+
+  /// The Chat media max height (default is full height)
+  final double maxHeight;
 
   /// Options to customize the behaviour and design of the messages
   final MessageOptions messageOptions;

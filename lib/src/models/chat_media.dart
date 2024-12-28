@@ -1,4 +1,4 @@
-part of '../../dash_chat_2.dart';
+part of '../../dash_chat_custom.dart';
 
 /// {@category Models}
 class ChatMedia {
@@ -6,6 +6,7 @@ class ChatMedia {
     required this.url,
     required this.fileName,
     required this.type,
+    this.fileBytes,
     this.isUploading = false,
     this.uploadedDate,
     this.customProperties,
@@ -17,6 +18,7 @@ class ChatMedia {
       url: jsonData['url'].toString(),
       fileName: jsonData['fileName'].toString(),
       type: MediaType.parse(jsonData['type'].toString()),
+      fileBytes: jsonData['fileBytes'] as Uint8List?,
       isUploading: jsonData['isUploading'] == true,
       uploadedDate: jsonData['uploadedDate'] != null
           ? DateTime.parse(jsonData['uploadedDate'].toString()).toLocal()
@@ -34,6 +36,9 @@ class ChatMedia {
   /// Type of media
   MediaType type;
 
+  /// File Bytes for MemoryImage
+  Uint8List? fileBytes;
+
   /// If the media is still uploading, useful to add a visual feedback
   bool isUploading;
 
@@ -50,6 +55,7 @@ class ChatMedia {
     return <String, dynamic>{
       'url': url,
       'type': type.toString(),
+      'fileBytes': fileBytes,
       'fileName': fileName,
       'isUploading': isUploading,
       'uploadedDate': uploadedDate?.toUtc().toIso8601String(),

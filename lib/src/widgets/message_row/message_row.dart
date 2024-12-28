@@ -1,8 +1,10 @@
-part of '../../../dash_chat_2.dart';
+part of '../../../dash_chat_custom.dart';
 
 /// @nodoc
 class MessageRow extends StatelessWidget {
   const MessageRow({
+    required this.maxWidth,
+    required this.maxHeight,
     required this.message,
     required this.currentUser,
     this.previousMessage,
@@ -12,6 +14,12 @@ class MessageRow extends StatelessWidget {
     this.messageOptions = const MessageOptions(),
     Key? key,
   }) : super(key: key);
+
+  /// The Chat media max width (default is full width)
+  final double maxWidth;
+
+  /// The Chat media max height (default is full height)
+  final double maxHeight;
 
   /// Current message to show
   final ChatMessage message;
@@ -92,8 +100,7 @@ class MessageRow extends StatelessWidget {
                 : null,
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: messageOptions.maxWidth ??
-                    MediaQuery.of(context).size.width * 0.7,
+                maxWidth: (messageOptions.maxWidth ?? maxWidth * 0.7).clampMax(maxWidth),
               ),
               child: Column(
                 crossAxisAlignment: isOwnMessage
@@ -116,12 +123,22 @@ class MessageRow extends StatelessWidget {
                         ? messageOptions.messageMediaBuilder!(
                             message, previousMessage, nextMessage)
                         : MediaContainer(
-                            message: message,
-                            isOwnMessage: isOwnMessage,
+                            maxWidth: maxWidth,
+                            maxHeight: maxHeight,
                             messageOptions: messageOptions,
+                            message: message,
+                            previousMessage: previousMessage,
+                            nextMessage: nextMessage,
+                            isOwnMessage: isOwnMessage,
+                            isNextSameAuthor: isNextSameAuthor,
+                            isPreviousSameAuthor: isPreviousSameAuthor,
+                            isAfterDateSeparator: isAfterDateSeparator,
+                            isBeforeDateSeparator: isBeforeDateSeparator,
                           ),
                   if (message.text.isNotEmpty)
                     TextContainer(
+                      maxWidth: maxWidth,
+                      maxHeight: maxHeight,
                       messageOptions: messageOptions,
                       message: message,
                       previousMessage: previousMessage,
@@ -140,9 +157,17 @@ class MessageRow extends StatelessWidget {
                         ? messageOptions.messageMediaBuilder!(
                             message, previousMessage, nextMessage)
                         : MediaContainer(
-                            message: message,
-                            isOwnMessage: isOwnMessage,
+                            maxWidth: maxWidth,
+                            maxHeight: maxHeight,
                             messageOptions: messageOptions,
+                            message: message,
+                            previousMessage: previousMessage,
+                            nextMessage: nextMessage,
+                            isOwnMessage: isOwnMessage,
+                            isNextSameAuthor: isNextSameAuthor,
+                            isPreviousSameAuthor: isPreviousSameAuthor,
+                            isAfterDateSeparator: isAfterDateSeparator,
+                            isBeforeDateSeparator: isBeforeDateSeparator,
                           ),
                   if (messageOptions.bottom != null)
                     messageOptions.bottom!(

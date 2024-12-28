@@ -1,4 +1,4 @@
-part of '../dash_chat_2.dart';
+part of '../dash_chat_custom.dart';
 
 /// {@category Entry point}
 class DashChat extends StatelessWidget {
@@ -13,8 +13,16 @@ class DashChat extends StatelessWidget {
     this.scrollToBottomOptions = const ScrollToBottomOptions(),
     this.readOnly = false,
     this.typingUsers,
+    this.maxWidth,
+    this.maxHeight,
     Key? key,
   }) : super(key: key);
+
+  /// The Chat media max width (default is full width)
+  final double? maxWidth;
+
+  /// The Chat media max height (default is full height)
+  final double? maxHeight;
 
   /// The current user of the chat
   final ChatUser currentUser;
@@ -48,10 +56,15 @@ class DashChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = this.maxWidth ?? MediaQuery.of(context).size.width;
+    double maxHeight = this.maxHeight ?? MediaQuery.of(context).size.height;
+
     return Column(
       children: <Widget>[
         Expanded(
           child: MessageList(
+            maxWidth: maxWidth,
+            maxHeight: maxHeight,
             currentUser: currentUser,
             messages: messages,
             messageOptions: messageOptions,

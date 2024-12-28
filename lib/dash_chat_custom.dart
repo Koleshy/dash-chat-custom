@@ -1,16 +1,20 @@
-library dash_chat_2;
+library dash_chat_custom;
 
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart' as vp;
+import 'package:widget_zoom_pro/widget_zoom_pro.dart';
 
 import 'src/helpers/link_helper.dart';
 import 'src/widgets/image_provider/image_provider.dart';
+import 'src/widgets/message_row/zoom_tap_content.dart';
 
 export 'package:flutter_parsed_text/flutter_parsed_text.dart';
 
@@ -45,3 +49,4 @@ part 'src/widgets/quick_replies/default_quick_reply.dart';
 part 'src/widgets/quick_replies/quick_replies.dart';
 part 'src/widgets/typing_users/default_typing_builder.dart';
 part 'src/widgets/typing_users/typing_indicator.dart';
+part 'src/extensions/double_clamp_extensions.dart';

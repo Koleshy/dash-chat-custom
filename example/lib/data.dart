@@ -1,4 +1,4 @@
-import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:dash_chat_custom/dash_chat_custom.dart';
 
 String profileImage =
     'https://firebasestorage.googleapis.com/v0/b/molteo-40978.appspot.com/o/1-intro-photo-final.jpeg?alt=media&token=daf78997-d8f0-49d1-9120-a9380bde48b5';
@@ -143,7 +143,7 @@ List<ChatMessage> media = <ChatMessage>[
         url:
             'https://firebasestorage.googleapis.com/v0/b/molteo-40978.appspot.com/o/memes%2F155512641_3864499247004975_4028017188079714246_n.jpg?alt=media&token=0b335455-93ed-4529-9055-9a2c741e0189',
         type: MediaType.file,
-        fileName: 'image.png',
+        fileName: 'image-test.png',
       ),
       ChatMedia(
         url:
@@ -154,6 +154,30 @@ List<ChatMessage> media = <ChatMessage>[
     ],
     user: user3,
     createdAt: DateTime(2021, 01, 30, 16, 34),
+  ),
+  ChatMessage(
+    medias: <ChatMedia>[
+      ChatMedia(
+        url:
+        'https://firebasestorage.googleapis.com/v0/b/molteo-40978.appspot.com/o/memes%2F155512641_3864499247004975_4028017188079714246_n.jpg?alt=media&token=0b335455-93ed-4529-9055-9a2c741e0189',
+        type: MediaType.image,
+        fileName: 'image.png',
+      )
+    ],
+    user: user,
+    createdAt: DateTime(2021, 01, 30, 16, 36),
+  ),
+  ChatMessage(
+    medias: <ChatMedia>[
+      ChatMedia(
+        url:
+        'https://firebasestorage.googleapis.com/v0/b/molteo-40978.appspot.com/o/memes%2F155512641_3864499247004975_4028017188079714246_n.jpg?alt=media&token=0b335455-93ed-4529-9055-9a2c741e0189',
+        type: MediaType.file,
+        fileName: 'image-custom-tester.png',
+      )
+    ],
+    user: user,
+    createdAt: DateTime(2021, 01, 30, 16, 46),
   ),
 ];
 

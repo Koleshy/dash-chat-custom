@@ -1,4 +1,4 @@
-part of '../../../dash_chat_2.dart';
+part of '../../../dash_chat_custom.dart';
 
 /// @nodoc
 class QuickReplies extends StatelessWidget {

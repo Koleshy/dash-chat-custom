@@ -1,3 +1,13 @@
+## [0.0.25] - 28/12/2024
+
+* Added hover and tap effects to media content (images, files) 
+* Added maxWidth and maxHeight for custom parent containers
+
+## [0.0.23] - 18/12/2024
+
+* Added zoom to media images
+* Added user background color to media messages 
+
 ## [0.0.21] - 02/06/2024
 
 * Upgraded dependencies

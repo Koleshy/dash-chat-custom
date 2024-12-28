@@ -1,4 +1,4 @@
-import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:dash_chat_custom/dash_chat_custom.dart';
 import 'package:examples/data.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +17,9 @@ class MediaState extends State<Media> {
         title: const Text('Media example'),
       ),
       body: DashChat(
+        messageOptions: MessageOptions(
+          showTime: true,
+        ),
         currentUser: user,
         onSend: (ChatMessage m) {
           setState(() {

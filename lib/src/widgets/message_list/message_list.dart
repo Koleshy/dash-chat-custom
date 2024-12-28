@@ -1,8 +1,10 @@
-part of '../../../dash_chat_2.dart';
+part of '../../../dash_chat_custom.dart';
 
 /// @nodoc
 class MessageList extends StatefulWidget {
   const MessageList({
+    required this.maxWidth,
+    required this.maxHeight,
     required this.currentUser,
     required this.messages,
     this.readOnly = false,
@@ -13,6 +15,12 @@ class MessageList extends StatefulWidget {
     this.typingUsers,
     Key? key,
   }) : super(key: key);
+
+  /// The Chat media max width (default is full width)
+  final double maxWidth;
+
+  /// The Chat media max height (default is full height)
+  final double maxHeight;
 
   /// The current user of the chat
   final ChatUser currentUser;
@@ -107,6 +115,8 @@ class MessageListState extends State<MessageList> {
                           ),
                         ] else
                           MessageRow(
+                            maxWidth: widget.maxWidth,
+                            maxHeight: widget.maxHeight,
                             message: widget.messages[i],
                             nextMessage: nextMessage,
                             previousMessage: previousMessage,
