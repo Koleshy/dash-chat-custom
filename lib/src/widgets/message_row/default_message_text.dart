@@ -95,7 +95,32 @@ class DefaultMessageText extends StatelessWidget {
         ? MarkdownBody(
             data: text,
             selectable: true,
-            styleSheet: messageOptions.markdownStyleSheet,
+            styleSheet: messageOptions.markdownStyleSheet != null
+                ? messageOptions.markdownStyleSheet?.copyWith(
+                  p: messageOptions.markdownStyleSheet?.p?.copyWith(
+                    color: isOwnMessage
+                        ? messageOptions.currentUserTextColor(context)
+                        : messageOptions.textColor,
+                  ),
+                  strong: messageOptions.markdownStyleSheet?.strong?.copyWith(
+                    color: isOwnMessage
+                        ? messageOptions.currentUserTextColor(context)
+                        : messageOptions.textColor,
+                  ),
+                )
+                : MarkdownStyleSheet(
+                  p: TextStyle(
+                    color: isOwnMessage
+                        ? messageOptions.currentUserTextColor(context)
+                        : messageOptions.textColor
+                  ),
+                  strong: TextStyle(
+                    color: isOwnMessage
+                        ? messageOptions.currentUserTextColor(context)
+                        : messageOptions.textColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
             onTapLink: (String value, String? href, String title) {
               if (href != null) {
                 openLink(href);

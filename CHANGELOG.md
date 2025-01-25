@@ -1,3 +1,7 @@
+## [0.0.26] - 24/01/2025
+
+* Added 'currentUserTextColor' support for markdown messages ('p' and 'strong' only)
+
 ## [0.0.25] - 28/12/2024
 
 * Added hover and tap effects to media content (images, files) 
