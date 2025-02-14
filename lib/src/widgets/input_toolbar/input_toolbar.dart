@@ -64,7 +64,7 @@ class InputToolbarState extends State<InputToolbar>
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
-      child: Container(
+      child: widget.inputOptions.inputContainerEnabled ? Container(
         padding: widget.inputOptions.inputToolbarPadding,
         margin: widget.inputOptions.inputToolbarMargin,
         decoration: widget.inputOptions.inputToolbarStyle,
@@ -129,7 +129,7 @@ class InputToolbarState extends State<InputToolbar>
               ...widget.inputOptions.trailing!,
           ],
         ),
-      ),
+      ) : const SizedBox(height: 20),
     );
   }
 

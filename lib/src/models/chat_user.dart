@@ -4,6 +4,7 @@ part of '../../dash_chat_custom.dart';
 class ChatUser {
   ChatUser({
     required this.id,
+    this.displayName,
     this.profileImage,
     this.customProperties,
     this.firstName,
@@ -14,6 +15,7 @@ class ChatUser {
   factory ChatUser.fromJson(Map<String, dynamic> jsonData) {
     return ChatUser(
       id: jsonData['id'].toString(),
+      displayName: jsonData['displayName']?.toString(),
       profileImage: jsonData['profileImage']?.toString(),
       firstName: jsonData['firstName']?.toString(),
       lastName: jsonData['lastName']?.toString(),
@@ -40,18 +42,18 @@ class ChatUser {
   /// Last name of the user
   String? lastName;
 
+  String? displayName;
+
   /// Get the full name (firstName + lastName) of the user
   String getFullName() {
-    return (firstName ?? '') +
-        (firstName != null && lastName != null
-            ? ' ${lastName!}'
-            : lastName ?? '');
+    return displayName ?? (firstName ?? '').trim();
   }
 
   /// Convert a ChatUser into a json
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
+      'displayName': displayName,
       'profileImage': profileImage,
       'firstName': firstName,
       'lastName': lastName,

@@ -1,3 +1,15 @@
+## [0.0.29] - 13/02/2025
+
+* Added 'displayName' to ChatUser class
+
+## [0.0.28] - 13/02/2025
+
+* Fixed 'FullName' text shown in the chat
+
+## [0.0.27] - 27/01/2025
+
+* Added 'inputContainerEnabled' on InputOptions class to show/hide the message input container
+
 ## [0.0.26] - 24/01/2025
 
 * Added 'currentUserTextColor' support for markdown messages ('p' and 'strong' only)

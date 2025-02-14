@@ -3,6 +3,7 @@ part of '../../dash_chat_custom.dart';
 /// {@category Customization}
 class InputOptions {
   const InputOptions({
+    this.inputContainerEnabled = true,
     this.textController,
     this.focusNode,
     this.inputTextDirection = TextDirection.ltr,
@@ -28,6 +29,8 @@ class InputOptions {
     this.cursorStyle = const CursorStyle(),
     this.autocorrect = true,
   });
+
+  final bool inputContainerEnabled;
 
   /// Function to call when a mention is triggered in the input,
   /// ie: typing ' @'
