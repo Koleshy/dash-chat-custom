@@ -5,6 +5,7 @@ class ChatMessage {
   ChatMessage({
     required this.user,
     required this.createdAt,
+    this.id,
     this.isMarkdown = false,
     this.text = '',
     this.medias,
@@ -18,6 +19,7 @@ class ChatMessage {
   /// Create a ChatMessage instance from json data
   factory ChatMessage.fromJson(Map<String, dynamic> jsonData) {
     return ChatMessage(
+      id: jsonData['id']?.toString() ?? '',
       user: ChatUser.fromJson(jsonData['user'] as Map<String, dynamic>),
       createdAt: DateTime.parse(jsonData['createdAt'].toString()).toLocal(),
       text: jsonData['text']?.toString() ?? '',
@@ -47,6 +49,9 @@ class ChatMessage {
           : null,
     );
   }
+
+  // Unique Message Id
+  String? id;
 
   /// If the message is Markdown formatted then it will be converted to Markdown (by default it will be false)
   bool isMarkdown;
@@ -83,6 +88,7 @@ class ChatMessage {
   /// Convert a ChatMessage into a json
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'id': id,
       'user': user.toJson(),
       'createdAt': createdAt.toUtc().toIso8601String(),
       'text': text,

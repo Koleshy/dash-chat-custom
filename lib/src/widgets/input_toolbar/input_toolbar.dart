@@ -22,13 +22,14 @@ class InputToolbar extends StatefulWidget {
   State<InputToolbar> createState() => InputToolbarState();
 }
 
-class InputToolbarState extends State<InputToolbar>
-    with WidgetsBindingObserver {
+class InputToolbarState extends State<InputToolbar> with WidgetsBindingObserver {
   late TextEditingController textController;
   OverlayEntry? _overlayEntry;
   int currentMentionIndex = -1;
   String currentTrigger = '';
   late FocusNode focusNode;
+
+  Uuid uuid = const Uuid();
 
   @override
   void initState() {
@@ -226,6 +227,7 @@ class InputToolbarState extends State<InputToolbar>
   void _sendMessage() {
     if (textController.text.isNotEmpty) {
       final ChatMessage message = ChatMessage(
+        id: widget.inputOptions.autoMessageId ? uuid.v4() : null,
         text: textController.text,
         user: widget.currentUser,
         createdAt: DateTime.now(),

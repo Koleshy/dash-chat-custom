@@ -68,8 +68,17 @@ class MediaContainer extends StatelessWidget {
         return Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: <Widget>[
-            VideoPlayer(url: media.url, key: Key(media.url)),
-            if (media.isUploading) loading
+            if (media.isUploading) loading,
+
+            VideoThumbnailPlayer(
+              videoUrl: media.url,
+              thumbnailUrl: media.thumbnailUrl,
+              fileName: media.fileName,
+              width: width,
+              height: height,
+            ),
+
+            // VideoPlayer(url: media.url, key: Key(media.url)),
           ],
         );
       case MediaType.image:
@@ -195,7 +204,7 @@ class MediaContainer extends StatelessWidget {
                       maxWidth: (maxWidth * 0.6).clampMax(maxWidthPerc),
                     ),
                     child: ZoomTapContent(
-                      onTap: messageOptions.onTapMedia != null
+                      onTap: messageOptions.onTapMedia != null && m.type != MediaType.video
                           ? () => messageOptions.onTapMedia!(m)
                           : null,
                       child: ClipRRect(

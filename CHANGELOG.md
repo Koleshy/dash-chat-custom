@@ -1,3 +1,7 @@
+## [0.0.30] - 30/05/2025
+
+* Added support to media videos with controls
+
 ## [0.0.29] - 13/02/2025
 
 * Added 'displayName' to ChatUser class

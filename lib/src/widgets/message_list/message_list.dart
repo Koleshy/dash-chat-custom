@@ -55,6 +55,8 @@ class MessageListState extends State<MessageList> {
   bool isLoadingMore = false;
   late ScrollController scrollController;
 
+  Uuid uuid = const Uuid();
+
   @override
   void initState() {
     scrollController =
@@ -94,38 +96,41 @@ class MessageListState extends State<MessageList> {
                       isBeforeDateSeparator = _shouldShowDateSeparator(
                           message, nextMessage, widget.messageListOptions);
                     }
-                    return Column(
-                      children: <Widget>[
-                        if (isAfterDateSeparator)
-                          widget.messageListOptions.dateSeparatorBuilder != null
-                              ? widget.messageListOptions
-                                  .dateSeparatorBuilder!(message.createdAt)
-                              : DefaultDateSeparator(
-                                  date: message.createdAt,
-                                  messageListOptions: widget.messageListOptions,
-                                ),
-                        if (widget.messageOptions.messageRowBuilder !=
-                            null) ...<Widget>[
-                          widget.messageOptions.messageRowBuilder!(
-                            message,
-                            previousMessage,
-                            nextMessage,
-                            isAfterDateSeparator,
-                            isBeforeDateSeparator,
-                          ),
-                        ] else
-                          MessageRow(
-                            maxWidth: widget.maxWidth,
-                            maxHeight: widget.maxHeight,
-                            message: widget.messages[i],
-                            nextMessage: nextMessage,
-                            previousMessage: previousMessage,
-                            currentUser: widget.currentUser,
-                            isAfterDateSeparator: isAfterDateSeparator,
-                            isBeforeDateSeparator: isBeforeDateSeparator,
-                            messageOptions: widget.messageOptions,
-                          ),
-                      ],
+                    return KeyedSubtree(
+                      key: ValueKey<String>(widget.messageOptions.autoMessageId ? uuid.v4() : message.id ?? '-'),
+                      child: Column(
+                        children: <Widget>[
+                          if (isAfterDateSeparator)
+                            widget.messageListOptions.dateSeparatorBuilder != null
+                                ? widget.messageListOptions
+                                    .dateSeparatorBuilder!(message.createdAt)
+                                : DefaultDateSeparator(
+                                    date: message.createdAt,
+                                    messageListOptions: widget.messageListOptions,
+                                  ),
+                          if (widget.messageOptions.messageRowBuilder !=
+                              null) ...<Widget>[
+                            widget.messageOptions.messageRowBuilder!(
+                              message,
+                              previousMessage,
+                              nextMessage,
+                              isAfterDateSeparator,
+                              isBeforeDateSeparator,
+                            ),
+                          ] else
+                            MessageRow(
+                              maxWidth: widget.maxWidth,
+                              maxHeight: widget.maxHeight,
+                              message: message, //widget.messages[i],
+                              nextMessage: nextMessage,
+                              previousMessage: previousMessage,
+                              currentUser: widget.currentUser,
+                              isAfterDateSeparator: isAfterDateSeparator,
+                              isBeforeDateSeparator: isBeforeDateSeparator,
+                              messageOptions: widget.messageOptions,
+                            ),
+                        ],
+                      ),
                     );
                   },
                 ),

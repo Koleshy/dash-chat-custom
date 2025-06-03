@@ -40,6 +40,7 @@ class MessageOptions {
     this.timePadding = const EdgeInsets.only(top: 5),
     this.markdownStyleSheet,
     Color? timeTextColor,
+    this.autoMessageId = true
   })  : _currentUserContainerColor = currentUserContainerColor,
         _currentUserTextColor = currentUserTextColor,
         _currentUserTimeTextColor = currentUserTimeTextColor,
@@ -137,6 +138,9 @@ class MessageOptions {
 
   /// Used to calculate [timeTextColor]
   final Color? _timeTextColor;
+
+  // Indicates if message Id will be added automatically
+  final bool autoMessageId;
 
   /// Builder to create the entire message row yourself
   final Widget Function(

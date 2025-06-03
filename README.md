@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://firebasestorage.googleapis.com/v0/b/molteo-40978.appspot.com/o/DashChat.png?alt=media&token=b1adb9b0-c601-4a33-89b7-2cb722647401" width="200"/>
-  <h3 align="center">The most complete Chat UI for flutter</h3>
+  <h3 align="center">The most complete Chat UI for flutter - NEW UPDATE !!!</h3>
   <p align="center">
       Easy to use, highly customizable and fully featured
   </p>
@@ -42,6 +42,7 @@
 - Message status - WIP
 - Zoom Media Images + Hover/Tap Effects - NEW !!!
 - Supports customizable maxWidth and maxHeight parent container (responsive) - NEW !!!
+- Supports Media Videos with Controls - NEW !!!
 
 You need another feature? you can use the `customProperties` field of the models, it allows you to pass other data to the library that you can then use inside custom builders to implement any feature you need.
 

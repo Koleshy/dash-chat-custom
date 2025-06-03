@@ -28,6 +28,7 @@ class InputOptions {
     this.inputToolbarMargin = const EdgeInsets.only(top: 8.0),
     this.cursorStyle = const CursorStyle(),
     this.autocorrect = true,
+    this.autoMessageId = true
   });
 
   final bool inputContainerEnabled;
@@ -110,4 +111,7 @@ class InputOptions {
 
   /// Whether to enable auto-correction. Defaults to true.
   final bool autocorrect;
+
+  // Indicates if a message Id will be added automatically
+  final bool autoMessageId;
 }

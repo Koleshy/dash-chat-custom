@@ -6,6 +6,7 @@ class ChatMedia {
     required this.url,
     required this.fileName,
     required this.type,
+    this.thumbnailUrl,
     this.fileBytes,
     this.isUploading = false,
     this.uploadedDate,
@@ -18,6 +19,7 @@ class ChatMedia {
       url: jsonData['url'].toString(),
       fileName: jsonData['fileName'].toString(),
       type: MediaType.parse(jsonData['type'].toString()),
+      thumbnailUrl: jsonData['thumbnailUrl'].toString(),
       fileBytes: jsonData['fileBytes'] as Uint8List?,
       isUploading: jsonData['isUploading'] == true,
       uploadedDate: jsonData['uploadedDate'] != null
@@ -35,6 +37,9 @@ class ChatMedia {
 
   /// Type of media
   MediaType type;
+
+  /// Thumbnail Image URL
+  String? thumbnailUrl;
 
   /// File Bytes for MemoryImage
   Uint8List? fileBytes;
@@ -55,6 +60,7 @@ class ChatMedia {
     return <String, dynamic>{
       'url': url,
       'type': type.toString(),
+      'thumbnailUrl': thumbnailUrl,
       'fileBytes': fileBytes,
       'fileName': fileName,
       'isUploading': isUploading,
