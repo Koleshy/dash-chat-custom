@@ -1,4 +1,4 @@
-## [0.0.30] - 30/05/2025
+## [0.0.30] - 02/06/2025
 
 * Added support to media videos with controls
 
