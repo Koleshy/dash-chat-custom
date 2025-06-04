@@ -96,41 +96,39 @@ class MessageListState extends State<MessageList> {
                       isBeforeDateSeparator = _shouldShowDateSeparator(
                           message, nextMessage, widget.messageListOptions);
                     }
-                    return KeyedSubtree(
-                      key: ValueKey<String>(widget.messageOptions.autoMessageId ? uuid.v4() : message.id ?? '-'),
-                      child: Column(
-                        children: <Widget>[
-                          if (isAfterDateSeparator)
-                            widget.messageListOptions.dateSeparatorBuilder != null
-                                ? widget.messageListOptions
-                                    .dateSeparatorBuilder!(message.createdAt)
-                                : DefaultDateSeparator(
-                                    date: message.createdAt,
-                                    messageListOptions: widget.messageListOptions,
-                                  ),
-                          if (widget.messageOptions.messageRowBuilder !=
-                              null) ...<Widget>[
-                            widget.messageOptions.messageRowBuilder!(
-                              message,
-                              previousMessage,
-                              nextMessage,
-                              isAfterDateSeparator,
-                              isBeforeDateSeparator,
-                            ),
-                          ] else
-                            MessageRow(
-                              maxWidth: widget.maxWidth,
-                              maxHeight: widget.maxHeight,
-                              message: message, //widget.messages[i],
-                              nextMessage: nextMessage,
-                              previousMessage: previousMessage,
-                              currentUser: widget.currentUser,
-                              isAfterDateSeparator: isAfterDateSeparator,
-                              isBeforeDateSeparator: isBeforeDateSeparator,
-                              messageOptions: widget.messageOptions,
-                            ),
-                        ],
-                      ),
+                    return Column(
+                      key: ValueKey('${message.id}-${message.user.id}-${message.createdAt.toIso8601String()}'),
+                      children: <Widget>[
+                        if (isAfterDateSeparator)
+                          widget.messageListOptions.dateSeparatorBuilder != null
+                              ? widget.messageListOptions
+                                  .dateSeparatorBuilder!(message.createdAt)
+                              : DefaultDateSeparator(
+                                  date: message.createdAt,
+                                  messageListOptions: widget.messageListOptions,
+                                ),
+                        if (widget.messageOptions.messageRowBuilder !=
+                            null) ...<Widget>[
+                          widget.messageOptions.messageRowBuilder!(
+                            message,
+                            previousMessage,
+                            nextMessage,
+                            isAfterDateSeparator,
+                            isBeforeDateSeparator,
+                          ),
+                        ] else
+                          MessageRow(
+                            maxWidth: widget.maxWidth,
+                            maxHeight: widget.maxHeight,
+                            message: message, //widget.messages[i],
+                            nextMessage: nextMessage,
+                            previousMessage: previousMessage,
+                            currentUser: widget.currentUser,
+                            isAfterDateSeparator: isAfterDateSeparator,
+                            isBeforeDateSeparator: isBeforeDateSeparator,
+                            messageOptions: widget.messageOptions,
+                          ),
+                      ],
                     );
                   },
                 ),

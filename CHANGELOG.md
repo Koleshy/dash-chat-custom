@@ -1,3 +1,9 @@
+## [0.0.31] - 04/06/2025
+
+* Fixed video thumbnail when error occurs
+* Added image placeholder when error occurs
+* Improved media performance
+
 ## [0.0.30] - 02/06/2025
 
 * Added support to media videos with controls

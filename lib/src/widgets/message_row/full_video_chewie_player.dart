@@ -3,11 +3,13 @@ part of '../../../dash_chat_custom.dart';
 class FullVideoChewiePlayer extends StatefulWidget {
 
   final String videoUrl;
+  final String? fileName;
   final bool canPlay;
 
   const FullVideoChewiePlayer({
     super.key,
     required this.videoUrl,
+    this.fileName,
     this.canPlay = true,
   });
 
@@ -76,6 +78,9 @@ class _FullVideoChewiePlayerState extends State<FullVideoChewiePlayer> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        title: widget.fileName != null
+          ? Text(widget.fileName!, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12))
+          : null,
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),

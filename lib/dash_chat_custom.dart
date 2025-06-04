@@ -1,9 +1,9 @@
 library dash_chat_custom;
 
 import 'dart:math';
-import 'dart:typed_data';
 
-import 'package:better_player_plus/better_player_plus.dart';
+// import 'package:better_player_plus/better_player_plus.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -15,17 +15,16 @@ import 'package:intl/intl.dart' as intl;
 import 'package:uuid/uuid.dart';
 import 'package:video_player/video_player.dart' as vp;
 import 'package:video_player/video_player.dart';
-import 'package:widget_zoom_pro/widget_zoom_pro.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-import 'src/extensions/context_extensions.dart';
 import 'src/helpers/link_helper.dart';
+import 'src/widgets/custom/keep_alive_image_zoom.dart';
 import 'src/widgets/image_provider/image_provider.dart';
 import 'src/widgets/message_row/zoom_tap_content.dart';
 
 export 'package:flutter_parsed_text/flutter_parsed_text.dart';
 
 part 'src/dash_chat.dart';
+part 'src/extensions/double_clamp_extensions.dart';
 part 'src/models/chat_media.dart';
 part 'src/models/chat_message.dart';
 part 'src/models/chat_user.dart';
@@ -48,15 +47,14 @@ part 'src/widgets/message_row/default_message_decoration.dart';
 part 'src/widgets/message_row/default_message_text.dart';
 part 'src/widgets/message_row/default_parse_patterns.dart';
 part 'src/widgets/message_row/default_user_name.dart';
+// part 'src/widgets/message_row/video_player.dart';
+part 'src/widgets/message_row/full_video_chewie_player.dart';
 part 'src/widgets/message_row/media_container.dart';
 part 'src/widgets/message_row/message_row.dart';
 part 'src/widgets/message_row/text_container.dart';
-// part 'src/widgets/message_row/video_player.dart';
-part 'src/widgets/message_row/full_video_chewie_player.dart';
 part 'src/widgets/message_row/video_thumbnail_player.dart';
-part 'src/widgets/message_row/full_video_better_player_page.dart';
+// part 'src/widgets/message_row/full_video_better_player_page.dart';
 part 'src/widgets/quick_replies/default_quick_reply.dart';
 part 'src/widgets/quick_replies/quick_replies.dart';
 part 'src/widgets/typing_users/default_typing_builder.dart';
 part 'src/widgets/typing_users/typing_indicator.dart';
-part 'src/extensions/double_clamp_extensions.dart';

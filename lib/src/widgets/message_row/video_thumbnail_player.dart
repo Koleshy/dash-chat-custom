@@ -18,15 +18,15 @@ class VideoThumbnailPlayer extends StatelessWidget {
   });
 
   Widget _getThumbnail() {
-    final Image image = thumbnailUrl != null
-        ? Image.network(thumbnailUrl!, fit: BoxFit.cover)
+    final Widget imageWidget = thumbnailUrl != null
+        ? CachedNetworkImage(imageUrl: thumbnailUrl!, fit: BoxFit.cover)
         : Image.asset('assets/video_placeholder.png', package: 'dash_chat_custom', fit: BoxFit.cover,
     );
 
     return Stack(
       fit: StackFit.expand,
       children: [
-        image,
+        imageWidget,
         Container(
           color: Colors.black.withOpacity(0.3), // Máscara oscura encima
         ),
@@ -37,12 +37,13 @@ class VideoThumbnailPlayer extends StatelessWidget {
   void _openFullVideoPlayer(BuildContext context) {
     if (kIsWeb) {
       Navigator.push(context, MaterialPageRoute(
-        builder: (_) => FullVideoChewiePlayer(videoUrl: videoUrl),
+        builder: (_) => FullVideoChewiePlayer(videoUrl: videoUrl, fileName: fileName),
       ));
     }
     else {
       Navigator.push(context, MaterialPageRoute(
-        builder: (_) => FullVideoBetterPlayerPage(videoUrl: videoUrl),
+        builder: (_) => FullVideoChewiePlayer(videoUrl: videoUrl, fileName: fileName),
+        // builder: (_) => FullVideoBetterPlayerPage(videoUrl: videoUrl),
       ));
     }
   }

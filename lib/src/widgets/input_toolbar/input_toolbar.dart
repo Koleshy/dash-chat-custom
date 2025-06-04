@@ -227,7 +227,7 @@ class InputToolbarState extends State<InputToolbar> with WidgetsBindingObserver 
   void _sendMessage() {
     if (textController.text.isNotEmpty) {
       final ChatMessage message = ChatMessage(
-        id: widget.inputOptions.autoMessageId ? uuid.v4() : null,
+        id: uuid.v4(),
         text: textController.text,
         user: widget.currentUser,
         createdAt: DateTime.now(),

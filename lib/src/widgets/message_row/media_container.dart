@@ -71,6 +71,7 @@ class MediaContainer extends StatelessWidget {
             if (media.isUploading) loading,
 
             VideoThumbnailPlayer(
+              key: ValueKey(media.url),
               videoUrl: media.url,
               thumbnailUrl: media.thumbnailUrl,
               fileName: media.fileName,
@@ -85,29 +86,51 @@ class MediaContainer extends StatelessWidget {
         return Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: <Widget>[
-            if (media.isUploading)
-              Image(
+            if (media.isUploading) loading,
+
+            // if (media.isUploading)
+            //   Image(
+            //     height: height,
+            //     width: width,
+            //     fit: BoxFit.cover,
+            //     alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
+            //     image: getImageProvider(media.url, fileBytes: media.fileBytes),
+            //     errorBuilder: (_, __, ___) {
+            //       return Image.asset('assets/placeholder.png',
+            //         package: 'dash_chat_custom',
+            //         fit: BoxFit.cover
+            //       );
+            //     },
+            //   ),
+
+            if (!media.isUploading)
+              KeepAliveImageZoom(
+                key: ValueKey(media.url),
+                heroAnimationTag: media.url,
                 height: height,
                 width: width,
                 fit: BoxFit.cover,
                 alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
-                image: getImageProvider(media.url, fileBytes: media.fileBytes),
+                imageProvider: getImageProvider(media.url, fileBytes: media.fileBytes),
               ),
 
-            if (!media.isUploading)
-              WidgetZoomPro(
-                hoverCursor: SystemMouseCursors.click,
-                enableEmbeddedView: false,
-                heroAnimationTag: const Uuid().v1(),
-                closeFullScreenImageOnEscape: true,
-                zoomWidget: Image(
-                  height: height,
-                  width: width,
-                  fit: BoxFit.cover,
-                  alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
-                  image: getImageProvider(media.url, fileBytes: media.fileBytes),
-                ),
-              ),
+              // WidgetZoomPro(
+              //   hoverCursor: SystemMouseCursors.click,
+              //   enableEmbeddedView: false,
+              //   heroAnimationTag: media.url,
+              //   closeFullScreenImageOnEscape: true,
+              //   zoomWidget: KeepAliveImage(
+              //     key: ValueKey(media.url),
+              //     height: height,
+              //     width: width,
+              //     fit: BoxFit.cover,
+              //     alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
+              //     imageProvider: getImageProvider(media.url, fileBytes: media.fileBytes),
+              //   ),
+              //   imageErrorBuilder: (_, __, ___) {
+              //     return const Icon(Icons.error, color: Colors.redAccent);
+              //   },
+              // ),
 
             if (media.isUploading) loading
           ],
