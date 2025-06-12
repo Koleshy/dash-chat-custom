@@ -103,6 +103,17 @@ class ChatMessage {
       'isMarkdown': isMarkdown,
     };
   }
+
+  bool get hasImageOrVideo {
+    if (medias?.isEmpty ?? true) {
+      return false;
+    }
+
+    final ChatMedia firstMedia = medias!.first;
+    return firstMedia.type == MediaType.video
+        || firstMedia.type == MediaType.image;
+  }
+
 }
 
 class MessageStatus {

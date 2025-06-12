@@ -50,6 +50,17 @@ class MediaContainer extends StatelessWidget {
   /// If the message is before by a date separator
   final bool isBeforeDateSeparator;
 
+  Widget _getMediaLoading({
+    required ChatMedia media, Key? key
+  }) {
+    return Container(
+      key: key,
+      child: messageOptions.mediaUploadingBuilder != null
+        ? messageOptions.mediaUploadingBuilder!(media, maxWidth, maxHeight)
+        : const CircularProgressIndicator(color: Colors.green),
+    );
+  }
+
   /// Get the right media widget according to its type
   Widget _getMedia(
     BuildContext context,
@@ -61,32 +72,38 @@ class MediaContainer extends StatelessWidget {
       width: 15,
       height: 15,
       margin: const EdgeInsets.all(10),
-      child: const CircularProgressIndicator(),
+      child: const CircularProgressIndicator(
+        strokeWidth: 6,
+        color: Colors.green,
+      ),
     );
+
     switch (media.type) {
       case MediaType.video:
         return Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: <Widget>[
-            if (media.isUploading) loading,
+            if (media.isUploading)
+              _getMediaLoading(key: ValueKey('loading-${media.url}'), media: media),
 
-            VideoThumbnailPlayer(
-              key: ValueKey(media.url),
-              videoUrl: media.url,
-              thumbnailUrl: media.thumbnailUrl,
-              fileName: media.fileName,
-              width: width,
-              height: height,
-            ),
+            if (!media.isUploading)
+              VideoThumbnailPlayer(
+                key: ValueKey(media.url),
+                videoUrl: media.url,
+                thumbnailUrl: media.thumbnailUrl,
+                fileName: media.fileName,
+                width: width,
+                height: height,
+              ),
 
-            // VideoPlayer(url: media.url, key: Key(media.url)),
           ],
         );
       case MediaType.image:
         return Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: <Widget>[
-            if (media.isUploading) loading,
+            if (media.isUploading)
+              _getMediaLoading(key: ValueKey('loading-${media.url}'), media: media),
 
             // if (media.isUploading)
             //   Image(
@@ -107,32 +124,12 @@ class MediaContainer extends StatelessWidget {
               KeepAliveImageZoom(
                 key: ValueKey(media.url),
                 heroAnimationTag: media.url,
-                height: height,
                 width: width,
+                height: height,
                 fit: BoxFit.cover,
                 alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
                 imageProvider: getImageProvider(media.url, fileBytes: media.fileBytes),
               ),
-
-              // WidgetZoomPro(
-              //   hoverCursor: SystemMouseCursors.click,
-              //   enableEmbeddedView: false,
-              //   heroAnimationTag: media.url,
-              //   closeFullScreenImageOnEscape: true,
-              //   zoomWidget: KeepAliveImage(
-              //     key: ValueKey(media.url),
-              //     height: height,
-              //     width: width,
-              //     fit: BoxFit.cover,
-              //     alignment: isOwnMessage ? Alignment.topRight : Alignment.topLeft,
-              //     imageProvider: getImageProvider(media.url, fileBytes: media.fileBytes),
-              //   ),
-              //   imageErrorBuilder: (_, __, ___) {
-              //     return const Icon(Icons.error, color: Colors.redAccent);
-              //   },
-              // ),
-
-            if (media.isUploading) loading
           ],
         );
       default:

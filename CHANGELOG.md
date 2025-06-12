@@ -1,3 +1,7 @@
+## [0.0.32] - 10/06/2025
+
+* Updated video/image max width
+
 ## [0.0.31] - 04/06/2025
 
 * Fixed video thumbnail when error occurs

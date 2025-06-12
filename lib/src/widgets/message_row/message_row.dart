@@ -123,8 +123,8 @@ class MessageRow extends StatelessWidget {
                         ? messageOptions.messageMediaBuilder!(
                             message, previousMessage, nextMessage)
                         : MediaContainer(
-                            maxWidth: 240, //context.isWebMd ? 200 : maxWidth,
-                            maxHeight: 320, //context.isWebMd ? 300 : maxHeight,
+                            maxWidth: message.hasImageOrVideo ? 240 : maxWidth,
+                            maxHeight: message.hasImageOrVideo ? 320 : maxHeight,
                             messageOptions: messageOptions,
                             message: message,
                             previousMessage: previousMessage,
@@ -157,8 +157,8 @@ class MessageRow extends StatelessWidget {
                         ? messageOptions.messageMediaBuilder!(
                             message, previousMessage, nextMessage)
                         : MediaContainer(
-                            maxWidth: 240, //context.isWebMd ? 200 : maxWidth,
-                            maxHeight: 320, //context.isWebMd ? 300 : maxHeight,
+                            maxWidth: message.hasImageOrVideo ? 240 : maxWidth,
+                            maxHeight: message.hasImageOrVideo ? 320 : maxHeight,
                             messageOptions: messageOptions,
                             message: message,
                             previousMessage: previousMessage,

@@ -40,6 +40,7 @@ class MessageOptions {
     this.timePadding = const EdgeInsets.only(top: 5),
     this.markdownStyleSheet,
     Color? timeTextColor,
+    this.mediaUploadingBuilder
   })  : _currentUserContainerColor = currentUserContainerColor,
         _currentUserTextColor = currentUserTextColor,
         _currentUserTimeTextColor = currentUserTimeTextColor,
@@ -230,4 +231,7 @@ class MessageOptions {
 
   /// Stylesheet for markdown message rendering
   final MarkdownStyleSheet? markdownStyleSheet;
+
+  final Widget Function(ChatMedia media, double maxWidth, double maxHeight)? mediaUploadingBuilder;
+
 }
